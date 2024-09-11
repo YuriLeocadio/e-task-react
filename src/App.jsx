@@ -1,21 +1,25 @@
 import { useState } from "react";
 import { Header } from "./components/Header";
 import styles from "./styles/App.module.css";
+import { STORAGE_SERVICE } from "./services/storage";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      description: "Comprar pão",
-      isCompleted: false,
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
   function handleClick() {
     if (!inputValue) {
-      alert("A tarefa precisa de uma descrição");
+      return alert("A tarefa precisa de uma descrição");
     }
+
+    const newTask = {
+      description: inputValue,
+      isCompleted: false,
+    }
+
+    setTasks(prevState => [...prevState, newTask]);
+    STORAGE_SERVICE.createTask(inputValue);
+    setInputValue('')
   }
 
   return (
@@ -53,7 +57,7 @@ function App() {
 
             <ul className={styles["task-list"]}>
               {tasks.map((task) => (
-                <li key={task.id}>
+                <li key={task.description}>
                   <strong>{task.description}</strong>
                 </li>
               ))}
