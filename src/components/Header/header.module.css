@@ -1,0 +1,27 @@
+.header {
+    width: 100%;
+    height: 225px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: #e6cdff;
+}
+
+.description{
+    width: 100%;
+    max-width: 968px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.title {
+    color: #7e2dff;
+}
+
+.subtitle {
+    font-size: 16px;
+    color: #8549e6;
+}
